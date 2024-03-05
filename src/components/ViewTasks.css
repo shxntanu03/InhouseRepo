@@ -1,0 +1,27 @@
+/* ViewTasks.css */
+
+.view-tasks-container {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+  }
+  
+  .filters-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .filter {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .task-list {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  /* Add more styling based on your specific design preferences */
+  

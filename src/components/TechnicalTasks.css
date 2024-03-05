@@ -1,0 +1,70 @@
+/* TechnicalTasks.css */
+
+.technical-tasks-container {
+    max-width: 600px;
+    margin: 20px auto;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .task-list ul {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .task-list li {
+      margin-bottom: 10px; /* Add margin between list items */
+      border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+      padding: 10px; /* Optional: Add padding for better spacing */
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  select,
+  input,
+  textarea,
+  button {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .task-list li {
+    margin-bottom: 10px;
+  }
+  
+  .task-list span {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
