@@ -7,9 +7,9 @@
   margin: auto;
 }
 
-/* .heading{
-  margin: auto;
-} */
+.heading{
+  margin-top:100px ;
+ } 
 
 .task-form {
   display: flex;

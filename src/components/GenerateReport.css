@@ -1,0 +1,51 @@
+.generate-report-container {
+    margin: 20px;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .heading{
+    margin:auto;
+  }
+  
+  .filters-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .filter {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .filter label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .custom-date-fields {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .custom-date-fields input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
