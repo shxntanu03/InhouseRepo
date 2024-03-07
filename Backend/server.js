@@ -245,6 +245,39 @@ app.get("/getTasks", async (req, res) => {
   }
 });
 
+
+// POST endpoint to fetch tasks based on startDate and status
+app.post("/viewTasks", async (req, res) => {
+  const { startDate, status } = req.body;
+
+  try {
+    // Define an array to store tasks from each schema
+    let allTasks = [];
+
+    // Fetch tasks from generalTaskSchema
+    const generalTasks = await generalTaskCollection.find({ startDate, status });
+    allTasks = allTasks.concat(generalTasks);
+
+    // Fetch tasks from techTaskSchema
+    const techTasks = await techTaskCollection.find({ startDate, status });
+    allTasks = allTasks.concat(techTasks);
+
+    // Fetch tasks from otherTaskSchema
+    const otherTasks = await otherTaskCollection.find({ startDate, status });
+    allTasks = allTasks.concat(otherTasks);
+
+    // Fetch tasks from personalTaskSchema
+    const personalTasks = await personalTaskCollection.find({ startDate, status });
+    allTasks = allTasks.concat(personalTasks);
+
+    res.status(200).json({ tasks: allTasks });
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
