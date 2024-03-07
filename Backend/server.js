@@ -85,6 +85,7 @@ app.post("/generalTask", async (req, res) => {
     batch,
     className,
     description,
+    status
   } = req.body;
 
   const newTask = await generalTaskCollection.insertMany([
@@ -97,6 +98,7 @@ app.post("/generalTask", async (req, res) => {
       batch,
       className,
       description,
+      status
     },
   ]);
 
@@ -124,11 +126,11 @@ app.get("/getGeneralTask", async (req, res) => {
 
 
 app.post("/techTask", async (req, res) => {
-  const { taskName, startTime, endTime, startDate, endDate, description } =
+  const { taskName, startTime, endTime, startDate, endDate, description, status} =
     req.body;
 
   const newTask = await techTaskCollection.insertMany([
-    { taskName, startTime, endTime, startDate, endDate, description },
+    { taskName, startTime, endTime, startDate, endDate, description,status },
   ]);
 
   try {
@@ -146,7 +148,6 @@ app.get("/getTechTask", async (req, res) => {
     // Assuming otherTaskCollection is your MongoDB collection reference
     const tasks = await techTaskCollection.find({}); // Use find({}) to retrieve all documents
     res.status(200).json(tasks);
-    console.log(tasks);
   } catch (error) {
     console.error("Error fetching tasks:", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -164,10 +165,11 @@ app.post("/otherTask", async (req, res) => {
     endDate,
     subject,
     description,
+    status
   } = req.body;
 
   const newTask = await otherTaskCollection.insertMany([
-    { session, startTime, endTime, startDate, endDate, subject, description },
+    { session, startTime, endTime, startDate, endDate, subject, description,status },
   ]);
 
   try {
@@ -194,11 +196,11 @@ app.get("/getOtherTask", async (req, res) => {
 
 
 app.post("/personalTask", async (req, res) => {
-  const { taskName, startTime, endTime, startDate, endDate, description } =
+  const { taskName, startTime, endTime, startDate, endDate, description,status } =
     req.body;
 
   const newTask = await personalTaskCollection.insertMany([
-    { taskName, startTime, endTime, startDate, endDate, description },
+    { taskName, startTime, endTime, startDate, endDate, description ,status},
   ]);
 
   try {
