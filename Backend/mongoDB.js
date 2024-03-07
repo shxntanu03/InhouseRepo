@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+const statusEnum = ["Completed", "Not Completed", "In Progress"];
+
 const generalTaskSchema = new mongoose.Schema({
   taskName: {
     type: String,
@@ -51,6 +53,11 @@ const generalTaskSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+  status: {
+    type: String,
+    enum: statusEnum,
+    required: true
   }
 });
 
@@ -77,6 +84,11 @@ const techTaskSchema = new mongoose.Schema({
     },
     description: {
       type: String,
+      required: true
+    },
+    status: {
+      type: String,
+      enum: statusEnum,
       required: true
     }
   });
@@ -109,6 +121,11 @@ const techTaskSchema = new mongoose.Schema({
     description: {
       type: String,
       required: true
+    },
+    status: {
+      type: String,
+      enum: statusEnum,
+      required: true
     }
   });
 
@@ -136,13 +153,18 @@ const techTaskSchema = new mongoose.Schema({
     description: {
       type: String,
       required: true
+    },
+    status: {
+      type: String,
+      enum: statusEnum,
+      required: true
     }
   });
 
-const userCollection = mongoose.model("User", userSchema); // Changed collection name to "User" (capitalized)
+const userCollection = mongoose.model("User", userSchema);
 const generalTaskCollection = mongoose.model("GeneralTask", generalTaskSchema);
 const techTaskCollection = mongoose.model("TechTask", techTaskSchema);
 const otherTaskCollection = mongoose.model("OtherTask", otherTaskSchema);
-const personalTaskCollection = mongoose.model("PersonalTask", personalTaskSchema); // Changed collection name to "GeneralTask" (capitalized)
+const personalTaskCollection = mongoose.model("PersonalTask", personalTaskSchema);
 
 module.exports = { userCollection, generalTaskCollection, techTaskCollection, otherTaskCollection, personalTaskCollection };
