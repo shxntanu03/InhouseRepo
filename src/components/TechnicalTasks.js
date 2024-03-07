@@ -24,7 +24,7 @@
 //     });
 //   };
 
-//   const handleTaskCompleted = () => {
+//   const handleTaskcompleted = () => {
 
     
 //     const existingTaskIndex = taskList.findIndex(
@@ -165,7 +165,7 @@
 //           ></textarea>
 //         </div>
 //         <div className="form-group">
-//           <button type="button" onClick={handleTaskCompleted}>
+//           <button type="button" onClick={handleTaskcompleted}>
 //             Create Task ✓
 //           </button>
 //         </div>
@@ -204,21 +204,21 @@
 //               </div>
 //               <span
 //                 role="img"
-//                 aria-label="Completed"
+//                 aria-label="completed"
 //                 onClick={() => handleStatusChange(index, 'completed')}
 //               >
 //                 ✅
 //               </span>
 //               <span
 //                 role="img"
-//                 aria-label="Not Completed"
+//                 aria-label="not completed"
 //                 onClick={() => handleStatusChange(index, 'not completed')}
 //               >
 //                 ❌
 //               </span>
 //               <span
 //                 role="img"
-//                 aria-label="In Progress"
+//                 aria-label="in progress"
 //                 onClick={() => handleStatusChange(index, 'in progress')}
 //               >
 //                 🔄
@@ -265,7 +265,7 @@ function TechnicalTasks({ updateAllTasks }) {
     startTime: '',
     endTime: '',
     description: '',
-    status: 'In Progress',
+    status: 'in progress',
   });
 
   const technicalTaskOptions = Array.from({ length: 19 }, (_, i) => `abc${i + 1}`);
@@ -295,7 +295,7 @@ function TechnicalTasks({ updateAllTasks }) {
     });
   };
 
-  const handleTaskCompleted = () => {
+  const handleTaskcompleted = () => {
     const existingTaskIndex = taskList.findIndex(
       (t) =>
         t.technicalTask === task.technicalTask &&
@@ -345,7 +345,7 @@ function TechnicalTasks({ updateAllTasks }) {
         startTime: '',
         endTime: '',
         description: '',
-        status: 'In Progress',
+        status: '',
       });
 
       updateAllTasks(updatedTaskList);
@@ -353,10 +353,12 @@ function TechnicalTasks({ updateAllTasks }) {
   };
 
   const handleStatusChange = (index, newStatus) => {
+
     const updatedTaskList = [...taskList];
     updatedTaskList[index].status = newStatus;
     setTaskList(updatedTaskList);
     updateAllTasks(updatedTaskList);
+    
   };
 
   const handleTaskDelete = (index) => {
@@ -430,7 +432,7 @@ function TechnicalTasks({ updateAllTasks }) {
           ></textarea>
         </div>
         <div className="form-group">
-          <button type="button" onClick={handleTaskCompleted}>
+          <button type="button" onClick={handleTaskcompleted}>
             Create Task ✓
           </button>
         </div>
@@ -463,22 +465,22 @@ function TechnicalTasks({ updateAllTasks }) {
               </div>
               <span
                 role="img"
-                aria-label="Completed"
-                onClick={() => handleStatusChange(index, 'Completed')}
+                aria-label="completed"
+                onClick={() => handleStatusChange(index, 'completed')}
               >
                 ✅
               </span>
               <span
                 role="img"
-                aria-label="Not Completed"
-                onClick={() => handleStatusChange(index, 'Not Completed')}
+                aria-label="not completed"
+                onClick={() => handleStatusChange(index, 'not completed')}
               >
                 ❌
               </span>
               <span
                 role="img"
-                aria-label="In Progress"
-                onClick={() => handleStatusChange(index, 'In Progress')}
+                aria-label="in progress"
+                onClick={() => handleStatusChange(index, 'in progress')}
               >
                 🔄
               </span>

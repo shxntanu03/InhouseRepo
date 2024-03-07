@@ -26,7 +26,7 @@
 //     const newTask = {
 //       id: tasks.length + 1,
 //       ...taskForm,
-//       status: 'Not Completed',
+//       status: 'not completed',
 //     };
 
 //     setTasks((prevTasks) => [...prevTasks, newTask]);
@@ -161,9 +161,9 @@
 //               <strong>Status:</strong> {task.status}
 //             </div>
 //             <div className="task-icons">
-//               <span onClick={() => handleTaskAction(task.id, 'Completed')}>✅</span>
-//               <span onClick={() => handleTaskAction(task.id, 'Not Completed')}>❌</span>
-//               <span onClick={() => handleTaskAction(task.id, 'In Progress')}>🔄</span>
+//               <span onClick={() => handleTaskAction(task.id, 'completed')}>✅</span>
+//               <span onClick={() => handleTaskAction(task.id, 'not completed')}>❌</span>
+//               <span onClick={() => handleTaskAction(task.id, 'in progress')}>🔄</span>
 //               <span onClick={() => handleTaskAction(task.id, 'Review')}>🗑️</span>
 //             </div>
 //           </div>
@@ -203,7 +203,7 @@ function Home({ updateAllTasks }) {
     batch: '',
     class: '',
     description: '',
-    status:"In Progress"
+    status:"in progress"
   });
 
   useEffect(() => {
@@ -232,7 +232,7 @@ function Home({ updateAllTasks }) {
     const newTask = {
       id: tasks.length + 1,
       ...taskForm,
-      status: 'Not Completed',
+      status: 'not completed',
     };
 
     setTasks((prevTasks) => [...prevTasks, newTask]);
@@ -275,7 +275,7 @@ function Home({ updateAllTasks }) {
       batch: '',
       class: '',
       description: '',
-      status:"In Progress"
+      status:""
     });
 
     updateAllTasks([...tasks, newTask]);
@@ -363,9 +363,9 @@ function Home({ updateAllTasks }) {
               <strong>Status:</strong> {task.status}
             </div>
             <div className="task-icons">
-              <span onClick={() => handleTaskAction(task.id, 'Completed')}>✅</span>
-              <span onClick={() => handleTaskAction(task.id, 'Not Completed')}>❌</span>
-              <span onClick={() => handleTaskAction(task.id, 'In Progress')}>🔄</span>
+              <span onClick={() => handleTaskAction(task.id, 'completed')}>✅</span>
+              <span onClick={() => handleTaskAction(task.id, 'not completed')}>❌</span>
+              <span onClick={() => handleTaskAction(task.id, 'in progress')}>🔄</span>
               {/* <span onClick={() => handleTaskAction(task.id, 'Review')}>🗑️</span> */}
             </div>
           </div>

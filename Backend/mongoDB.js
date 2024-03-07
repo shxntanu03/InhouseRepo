@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-const statusEnum = ["Completed", "Not Completed", "In Progress"];
+const statusEnum = ["completed", "not completed", "in progress"];
 
 const generalTaskSchema = new mongoose.Schema({
   taskName: {

@@ -27,7 +27,7 @@
 //     });
 //   };
 
-//   const handleTaskCompleted = () => {
+//   const handleTaskcompleted = () => {
 //     const existingTask = taskList.find(
 //       (t) => t.session === task.session && t.startDate === task.startDate
 //     );
@@ -197,7 +197,7 @@
 
 
 //         <div className="form-group">
-//           <button type="button" onClick={handleTaskCompleted}>
+//           <button type="button" onClick={handleTaskcompleted}>
 //             Create Task ✓
 //           </button>
 //         </div>
@@ -249,21 +249,21 @@
 
 //               <span
 //                 role="img"
-//                 aria-label="Completed"
+//                 aria-label="completed"
 //                 onClick={() => handleStatusChange(index, 'completed')}
 //               >
 //                 ✅
 //               </span>
 //               <span
 //                 role="img"
-//                 aria-label="Not Completed"
+//                 aria-label="not completed"
 //                 onClick={() => handleStatusChange(index, 'not completed')}
 //               >
 //                 ❌
 //               </span>
 //               <span
 //                 role="img"
-//                 aria-label="In Progress"
+//                 aria-label="in progress"
 //                 onClick={() => handleStatusChange(index, 'in progress')}
 //               >
 //                 🔄
@@ -314,7 +314,7 @@ function OtherTasks({ updateAllTasks }) {
     endTime: '',
     subject: '',
     description: '',
-    status: 'In Progress',
+    status: 'in progress',
   });
 
   const sessionOptions = ['Conducted', 'Attended', 'Organised'];
@@ -344,7 +344,7 @@ function OtherTasks({ updateAllTasks }) {
     });
   };
 
-  const handleTaskCompleted = () => {
+  const handleTaskcompleted = () => {
     const existingTask = taskList.find(
       (t) => t.session === task.session && t.startDate === task.startDate
     );
@@ -397,7 +397,7 @@ function OtherTasks({ updateAllTasks }) {
       endTime: '',
       subject: '',
       description: '',
-      status: 'In Progress',
+      status: '',
     });
   };
 
@@ -490,7 +490,7 @@ function OtherTasks({ updateAllTasks }) {
           ></textarea>
         </div>
         <div className="form-group">
-          <button type="button" onClick={handleTaskCompleted}>
+          <button type="button" onClick={handleTaskcompleted}>
             Create Task ✓
           </button>
         </div>
@@ -526,22 +526,22 @@ function OtherTasks({ updateAllTasks }) {
               </div>
               <span
                 role="img"
-                aria-label="Completed"
-                onClick={() => handleStatusChange(index, 'Completed')}
+                aria-label="completed"
+                onClick={() => handleStatusChange(index, 'completed')}
               >
                 ✅
               </span>
               <span
                 role="img"
-                aria-label="Not Completed"
-                onClick={() => handleStatusChange(index, 'Not Completed')}
+                aria-label="not completed"
+                onClick={() => handleStatusChange(index, 'not completed')}
               >
                 ❌
               </span>
               <span
                 role="img"
-                aria-label="In Progress"
-                onClick={() => handleStatusChange(index, 'In Progress')}
+                aria-label="in progress"
+                onClick={() => handleStatusChange(index, 'in progress')}
               >
                 🔄
               </span>
