@@ -203,6 +203,7 @@ function Home({ updateAllTasks }) {
     batch: '',
     class: '',
     description: '',
+    status:"In Progress"
   });
 
   useEffect(() => {
@@ -247,7 +248,7 @@ function Home({ updateAllTasks }) {
         batch: taskForm.batch,
         className: taskForm.class,
         description: taskForm.description,
-        status: 'Not Completed'
+        status: taskForm.status
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -274,6 +275,7 @@ function Home({ updateAllTasks }) {
       batch: '',
       class: '',
       description: '',
+      status:"In Progress"
     });
 
     updateAllTasks([...tasks, newTask]);
@@ -364,7 +366,7 @@ function Home({ updateAllTasks }) {
               <span onClick={() => handleTaskAction(task.id, 'Completed')}>✅</span>
               <span onClick={() => handleTaskAction(task.id, 'Not Completed')}>❌</span>
               <span onClick={() => handleTaskAction(task.id, 'In Progress')}>🔄</span>
-              <span onClick={() => handleTaskAction(task.id, 'Review')}>🗑️</span>
+              {/* <span onClick={() => handleTaskAction(task.id, 'Review')}>🗑️</span> */}
             </div>
           </div>
         ))}

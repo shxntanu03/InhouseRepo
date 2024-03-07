@@ -265,7 +265,7 @@ function TechnicalTasks({ updateAllTasks }) {
     startTime: '',
     endTime: '',
     description: '',
-    status: 'in progress',
+    status: 'In Progress',
   });
 
   const technicalTaskOptions = Array.from({ length: 19 }, (_, i) => `abc${i + 1}`);
@@ -320,7 +320,7 @@ function TechnicalTasks({ updateAllTasks }) {
           startTime: task.startTime,
           endTime: task.endTime,
           description: task.description,
-          // status: task.status
+          status: task.status
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -345,7 +345,7 @@ function TechnicalTasks({ updateAllTasks }) {
         startTime: '',
         endTime: '',
         description: '',
-        status: 'in progress',
+        status: 'In Progress',
       });
 
       updateAllTasks(updatedTaskList);
@@ -464,21 +464,21 @@ function TechnicalTasks({ updateAllTasks }) {
               <span
                 role="img"
                 aria-label="Completed"
-                onClick={() => handleStatusChange(index, 'completed')}
+                onClick={() => handleStatusChange(index, 'Completed')}
               >
                 ✅
               </span>
               <span
                 role="img"
                 aria-label="Not Completed"
-                onClick={() => handleStatusChange(index, 'not completed')}
+                onClick={() => handleStatusChange(index, 'Not Completed')}
               >
                 ❌
               </span>
               <span
                 role="img"
                 aria-label="In Progress"
-                onClick={() => handleStatusChange(index, 'in progress')}
+                onClick={() => handleStatusChange(index, 'In Progress')}
               >
                 🔄
               </span>

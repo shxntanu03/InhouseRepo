@@ -18,7 +18,7 @@ function PersonalTasks({ updateAllTasks }) {
     startTime: '',
     endTime: '',
     description: '',
-    status: 'in progress',
+    status: 'In Progress',
   });
 
   useEffect(() => {
@@ -84,7 +84,7 @@ function PersonalTasks({ updateAllTasks }) {
       startTime: '',
       endTime: '',
       description: '',
-      status: 'in progress',
+      status: 'In Progress',
     });
 
     updateAllTasks(updatedTaskList);
@@ -195,21 +195,21 @@ function PersonalTasks({ updateAllTasks }) {
             <span
               role="img"
               aria-label="Completed"
-              onClick={() => handleStatusChange(index, 'completed')}
+              onClick={() => handleStatusChange(index, 'Completed')}
             >
               ✅
             </span>
             <span
               role="img"
               aria-label="Not Completed"
-              onClick={() => handleStatusChange(index, 'not completed')}
+              onClick={() => handleStatusChange(index, 'Not Completed')}
             >
               ❌
             </span>
             <span
               role="img"
               aria-label="In Progress"
-              onClick={() => handleStatusChange(index, 'in progress')}
+              onClick={() => handleStatusChange(index, 'In Progress')}
             >
               🔄
             </span>
