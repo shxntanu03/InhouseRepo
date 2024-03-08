@@ -278,6 +278,49 @@ app.post("/viewTasks", async (req, res) => {
 });
 
 
+// Route to handle POST request for updating a task
+// Route to handle POST request for updating a task
+app.post('/updateTask', async (req, res) => {
+  try {
+    const { taskId, status, category } = req.body;
+
+    // Check if taskId, status, and category are provided
+    if (!taskId || !status || !category) {
+      return res.status(400).json({ error: 'Task ID, status, and category are required.' });
+    }
+
+    let updatedTask;
+
+    // Update task based on the provided category
+    switch (category) {
+      case 'techTask':
+        updatedTask = await techTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        break;
+      case 'otherTask':
+        updatedTask = await otherTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        break;
+      case 'personalTask':
+        updatedTask = await personalTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        break;
+      case 'generalTask':
+        updatedTask = await generalTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        break;
+      default:
+        return res.status(400).json({ error: 'Invalid task category.' });
+    }
+
+    // Check if task with provided taskId exists
+    if (updatedTask.nModified === 0) {
+      return res.status(404).json({ error: 'Task not found.' });
+    }
+
+    return res.status(200).json({ message: 'Task updated successfully.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
