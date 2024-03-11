@@ -1,5 +1,9 @@
+
+
+
+
 // // OtherTasks.js
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import './OtherTasks.css';
 
 // function OtherTasks({ updateAllTasks }) {
@@ -15,10 +19,25 @@
 //     status: 'in progress',
 //   });
 
-//   const sessionOptions = ['conducted', 'attended', 'organised'];
+//   const sessionOptions = ['Conducted', 'Attended', 'Organised'];
 
+//   useEffect(() => {
+//     fetchOtherTasks();
+//   }, []);
 
-//   //Here we take the e variable from select option in select dropdown and access the name and value
+//   const fetchOtherTasks = async () => {
+//     try {
+//       const response = await fetch("http://localhost:8000/getOtherTask");
+//       if (!response.ok) {
+//         throw new Error('Failed to fetch tasks');
+//       }
+//       const tasks = await response.json();
+//       setTaskList(tasks);
+//     } catch (error) {
+//       console.error('Error fetching tasks:', error);
+//     }
+//   };
+
 //   const handleInputChange = (e) => {
 //     const { name, value } = e.target;
 //     setTask({
@@ -33,16 +52,12 @@
 //     );
 
 //     if (existingTask) {
-//       // If a task with the same session and start date exists, update its status
 //       const updatedTaskList = taskList.map((t) =>
 //         t === existingTask ? { ...t, status: task.status } : t
 //       );
 //       setTaskList(updatedTaskList);
 //       updateAllTasks(updatedTaskList);
-//     } 
-    
-//     else {
-//       // If no existing task is found, add a new task to the list
+//     } else {
 //       const updatedTaskList = [...taskList, { ...task }];
 //       setTaskList(updatedTaskList);
 //       updateAllTasks(updatedTaskList);
@@ -51,8 +66,14 @@
 //     fetch("http://localhost:8000/otherTask", {
 //       method: "POST",
 //       body: JSON.stringify({
-//         session:task.session, startTime:task.startTime, endTime:task.endTime, startDate:task.startDate, 
-//         endDate:task.endDate,subject:task.subject,description:task.description
+//         session: task.session,
+//         startTime: task.startTime,
+//         endTime: task.endTime,
+//         startDate: task.startDate,
+//         endDate: task.endDate,
+//         subject: task.subject,
+//         description: task.description,
+//         status: task.status
 //       }),
 //       headers: {
 //         'Content-Type': 'application/json'
@@ -64,17 +85,12 @@
 //           window.alert(data.message);
 //         });
 //       }
-     
-//       window.alert('Task created successfull');
+//       window.alert('Task created successfully');
 //     })
 //     .catch(error => {
 //       console.error('Error:', error);
 //     });
 
-
-
-
-//     // Reset the task state
 //     setTask({
 //       session: '',
 //       startDate: '',
@@ -83,22 +99,15 @@
 //       endTime: '',
 //       subject: '',
 //       description: '',
-//       status: 'in progress',
+//       status: '',
 //     });
-    
 //   };
 
-
-//   // ----------  COMPLETE INPROGRESS INCOMPLETE SATHI -------------------------------
-
 //   const handleStatusChange = (index, newStatus) => {
-
 //     const updatedTaskList = [...taskList];
 //     updatedTaskList[index].status = newStatus;
-
 //     setTaskList(updatedTaskList);
 //     updateAllTasks(updatedTaskList);
-
 //   };
 
 //   const handleTaskDelete = (index) => {
@@ -110,19 +119,11 @@
 
 //   return (
 //     <div className="other-tasks-container">
-      
 //       <div className="heading">
-//       <h2>Create Other Task</h2>
-
+//         <h2>Create Other Task</h2>
 //       </div>
-     
-//       {/* <h1>Create kara Tasks</h1> */}
-
-
 //       <form>
 //         <div className="form-group">
-
-
 //           <label>Session:</label>
 //           <select
 //             name="session"
@@ -130,15 +131,13 @@
 //             onChange={handleInputChange}
 //           >
 //             <option value="">Select Session</option>
-//             {sessionOptions.map((option) => (
-//               <option key={option} value={option}>
+//             {sessionOptions.map((option, index) => (
+//               <option key={index} value={option}>
 //                 {option}
 //               </option>
 //             ))}
 //           </select>
 //         </div>
-
-
 //         <div className="form-group">
 //           <label>Start Date:</label>
 //           <input
@@ -148,7 +147,6 @@
 //             onChange={handleInputChange}
 //           />
 //         </div>
-
 //         <div className="form-group">
 //           <label>End Date:</label>
 //           <input
@@ -158,7 +156,6 @@
 //             onChange={handleInputChange}
 //           />
 //         </div>
-
 //         <div className="form-group">
 //           <label>Start Time:</label>
 //           <input
@@ -194,41 +191,26 @@
 //             onChange={handleInputChange}
 //           ></textarea>
 //         </div>
-
-
 //         <div className="form-group">
 //           <button type="button" onClick={handleTaskcompleted}>
 //             Create Task ✓
 //           </button>
 //         </div>
 //       </form>
-
-
-// {/* ----------------------- TASK LIST FUNCTIONALITY ----------------------------------------- */}
-
-
 //       <div className="task-list">
 //         <h3>Task List</h3>
-
-
 //         <ul>
-
-
 //           {taskList.map((taskItem, index) => (
 //             <li key={index}>
-
-
 //               <div>
 //                 <strong>Session:</strong> {taskItem.session}
 //               </div>
 //               <div>
 //                 <strong>Start Date:</strong> {taskItem.startDate}
 //               </div>
-
 //               <div>
 //                 <strong>End Date:</strong> {taskItem.endDate}
 //               </div>
-
 //               <div>
 //                 <strong>Start Time:</strong> {taskItem.startTime}
 //               </div>
@@ -244,9 +226,6 @@
 //               <div>
 //                 <strong>Status:</strong> {taskItem.status}
 //               </div>
-
-
-
 //               <span
 //                 role="img"
 //                 aria-label="completed"
@@ -268,13 +247,6 @@
 //               >
 //                 🔄
 //               </span>
-//               {/* <span
-//                 role="img"
-//                 aria-label="Update"
-//                 onClick={() => console.log('Update task')}
-//               >
-//                 ✏️
-//               </span> */}
 //               <span
 //                 role="img"
 //                 aria-label="Delete"
@@ -284,8 +256,6 @@
 //               </span>
 //             </li>
 //           ))}
-
-
 //         </ul>
 //       </div>
 //     </div>
@@ -296,13 +266,12 @@
 
 
 
-
-
-
-
-// OtherTasks.js
 import React, { useState, useEffect } from 'react';
 import './OtherTasks.css';
+import { Button, Form } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function OtherTasks({ updateAllTasks }) {
   const [taskList, setTaskList] = useState([]);
@@ -315,6 +284,15 @@ function OtherTasks({ updateAllTasks }) {
     subject: '',
     description: '',
     status: 'in progress',
+  });
+  const [validationErrors, setValidationErrors] = useState({
+    session: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
+    subject: '',
+    description: '',
   });
 
   const sessionOptions = ['Conducted', 'Attended', 'Organised'];
@@ -344,7 +322,46 @@ function OtherTasks({ updateAllTasks }) {
     });
   };
 
-  const handleTaskcompleted = () => {
+  const validateForm = () => {
+    let isValid = true;
+    const errors = {};
+    if (!task.session) {
+      errors.session = 'Field is required';
+      isValid = false;
+    }
+    if (!task.startDate) {
+      errors.startDate = 'Field is required';
+      isValid = false;
+    }
+    if (!task.endDate) {
+      errors.endDate = 'Field is required';
+      isValid = false;
+    }
+    if (!task.startTime) {
+      errors.startTime = 'Field is required';
+      isValid = false;
+    }
+    if (!task.endTime) {
+      errors.endTime = 'Field is required';
+      isValid = false;
+    }
+    if (!task.subject) {
+      errors.subject = 'Field is required';
+      isValid = false;
+    }
+    if (!task.description) {
+      errors.description = 'Field is required';
+      isValid = false;
+    }
+    setValidationErrors(errors);
+    return isValid;
+  };
+
+  const handleTaskCompleted = () => {
+    if (!validateForm()) {
+      return;
+    }
+
     const existingTask = taskList.find(
       (t) => t.session === task.session && t.startDate === task.startDate
     );
@@ -380,10 +397,10 @@ function OtherTasks({ updateAllTasks }) {
     .then(response => {
       if (!response.ok) {
         return response.json().then(data => {
-          window.alert(data.message);
+          toast.error(data.message);
         });
       }
-      window.alert('Task created successfully');
+      toast.success('Task created successfully');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -419,82 +436,72 @@ function OtherTasks({ updateAllTasks }) {
     <div className="other-tasks-container">
       <div className="heading">
         <h2>Create Other Task</h2>
+
+        <ToastContainer></ToastContainer>
       </div>
-      <form>
-        <div className="form-group">
-          <label>Session:</label>
-          <select
-            name="session"
-            value={task.session}
-            onChange={handleInputChange}
-          >
+
+      <Form>
+        <Form.Group>
+
+          <Form.Label>Session:</Form.Label>
+          <Form.Control as="select" name="session" value={task.session} onChange={handleInputChange} isInvalid={!!validationErrors.session}>
             <option value="">Select Session</option>
             {sessionOptions.map((option, index) => (
               <option key={index} value={option}>
                 {option}
               </option>
             ))}
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Start Date:</label>
-          <input
-            type="date"
-            name="startDate"
-            value={task.startDate}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>End Date:</label>
-          <input
-            type="date"
-            name="endDate"
-            value={task.endDate}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Start Time:</label>
-          <input
-            type="time"
-            name="startTime"
-            value={task.startTime}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>End Time:</label>
-          <input
-            type="time"
-            name="endTime"
-            value={task.endTime}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Subject:</label>
-          <input
-            type="text"
-            name="subject"
-            value={task.subject}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={task.description}
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <button type="button" onClick={handleTaskcompleted}>
-            Create Task ✓
-          </button>
-        </div>
-      </form>
+          </Form.Control>
+          <Form.Control.Feedback type="invalid">{validationErrors.session}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Form.Label>Start Date:</Form.Label>
+          <Form.Control type="date" name="startDate" value={task.startDate} onChange={handleInputChange} isInvalid={!!validationErrors.startDate} />
+          <Form.Control.Feedback type="invalid">{validationErrors.startDate}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Form.Label>End Date:</Form.Label>
+          <Form.Control type="date" name="endDate" value={task.endDate} onChange={handleInputChange} isInvalid={!!validationErrors.endDate} />
+          <Form.Control.Feedback type="invalid">{validationErrors.endDate}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Form.Label>Start Time:</Form.Label>
+          <Form.Control type="time" name="startTime" value={task.startTime} onChange={handleInputChange} isInvalid={!!validationErrors.startTime} />
+          <Form.Control.Feedback type="invalid">{validationErrors.startTime}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Form.Label>End Time:</Form.Label>
+          <Form.Control type="time" name="endTime" value={task.endTime} onChange={handleInputChange} isInvalid={!!validationErrors.endTime} />
+          <Form.Control.Feedback type="invalid">{validationErrors.endTime}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Form.Label>Subject:</Form.Label>
+          <Form.Control type="text" name="subject" value={task.subject} onChange={handleInputChange} isInvalid={!!validationErrors.subject} />
+          <Form.Control.Feedback type="invalid">{validationErrors.subject}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Form.Label>Description:</Form.Label>
+          <Form.Control as="textarea" name="description" value={task.description} onChange={handleInputChange} isInvalid={!!validationErrors.description} />
+          <Form.Control.Feedback type="invalid">{validationErrors.description}</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Button variant="primary" type="button" onClick={handleTaskCompleted}>
+          Create Task ✓
+        </Button>
+      </Form>
       <div className="task-list">
         <h3>Task List</h3>
         <ul>
@@ -561,4 +568,3 @@ function OtherTasks({ updateAllTasks }) {
 }
 
 export default OtherTasks;
-

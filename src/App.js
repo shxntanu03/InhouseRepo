@@ -101,6 +101,7 @@ import Login from './components/Login.js'; // Import the Login component
 import GenerateReport from './components/GenerateReport.js'; // Import the GenerateReport component
 import { checkTasksAndSendReminders } from './components/TaskReminder';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// import { ToastContainer } from 'react-bootstrap';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); // State to track login status
@@ -157,6 +158,7 @@ function App() {
           {/* Routes protected by login */}
           {loggedIn ? (
             <>
+              {/* <ToastContainer></ToastContainer> */}
               <Route path="/" element={<Navigate to="/entry-page" />} /> {/* Redirect to Home */}
               <Route path="/entry-page" element={<EntryPage updateAllTasks={updateAllTasks} onLogout={handleLogout} />} />
               <Route path="/view-tasks" element={<ViewTasks taskList={allTasks} />} />

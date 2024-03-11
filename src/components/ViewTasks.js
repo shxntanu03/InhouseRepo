@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './ViewTasks.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 async function fetchTask(startDate, status) {
   try {
@@ -25,7 +28,7 @@ async function fetchTask(startDate, status) {
     return responseData.tasks;
   } catch (error) {
     console.error('Error:', error.message);
-    window.alert('An error occurred while displaying the task.');
+    toast.error('An error occurred while displaying the task.');
     return [];
   }
 }
@@ -90,6 +93,7 @@ function ViewTasks({ taskList }) {
       <div className="task-list">
         {displayedTasks.map((task, index) => (
           <div key={index} className="task-item">
+
             <div><strong>Task Name:</strong> {task.taskName}</div>
             <div><strong>Status:</strong> {task.status}</div>
             <div><strong>Start Date:</strong> {task.startDate}</div>
