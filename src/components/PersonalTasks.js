@@ -235,6 +235,7 @@
 import React, { useState, useEffect } from 'react';
 import './PersonalTasks.css';
 import { toast, ToastContainer } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID generator
 import 'react-toastify/dist/ReactToastify.css';
 
 function PersonalTasks({ updateAllTasks }) {
@@ -275,22 +276,32 @@ function PersonalTasks({ updateAllTasks }) {
     });
   };
 
+
+  const generateTaskId = () => {
+    return uuidv4();
+  }
+
+
+
   const handleTaskcompleted = () => {
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
-      const updatedTaskList = [...taskList, { ...task }];
+      const taskId = generateTaskId(); // Generate taskId
+      const updatedTaskList = [...taskList, { ...task, taskId }]; // Use generated taskId
       setTaskList(updatedTaskList);
-
+      updateAllTasks(updatedTaskList);
+  
       fetch("http://localhost:8000/personalTask", {
         method: "POST",
         body: JSON.stringify({
+          taskId: taskId, // Use generated taskId
           taskName: task.taskName,
           startTime: task.startTime,
           endTime: task.endTime,
           startDate: task.startDate,
           endDate: task.endDate,
           description: task.description,
-          status: task.status
+          status: "in progress"
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -307,7 +318,7 @@ function PersonalTasks({ updateAllTasks }) {
       .catch(error => {
         console.error('Error:', error);
       });
-
+  
       setTask({
         taskName: '',
         startDate: '',
@@ -317,13 +328,13 @@ function PersonalTasks({ updateAllTasks }) {
         description: '',
         status: '',
       });
-
+  
       updateAllTasks(updatedTaskList);
     } else {
       setErrors(errors);
     }
   };
-
+  
   const validateForm = () => {
     let errors = {};
     if (!task.taskName.trim()) {
@@ -349,6 +360,32 @@ function PersonalTasks({ updateAllTasks }) {
     updatedTaskList[index].status = newStatus;
     setTaskList(updatedTaskList);
     updateAllTasks(updatedTaskList);
+
+   
+  
+    // Send POST request to update task status
+    fetch("http://localhost:8000/updateTask", {
+      method: "POST",
+      body: JSON.stringify({
+        taskId: updatedTaskList[index].taskId, // Pass taskId of the updated task
+        status: newStatus, // Pass newStatus to update task status
+        category: 'personalTask' // Assuming the category is 'techTask'
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(data => {
+          console.error(data.error);
+        });
+      }
+      console.log('Task status updated successfully');
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   };
 
   const handleTaskDelete = (index) => {
@@ -492,6 +529,7 @@ function PersonalTasks({ updateAllTasks }) {
     </div>
   );
 }
+
 
 export default PersonalTasks;
 

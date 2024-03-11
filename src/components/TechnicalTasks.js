@@ -102,7 +102,8 @@ function TechnicalTasks({ updateAllTasks }) {
         t.status === task.status
     );
 
-    if (existingTaskIndex === -1) {
+    if (existingTaskIndex === -1) 
+    {
       const taskId = generateTaskId(); // Generate taskId
       const updatedTaskList = [...taskList, { ...task, taskId }];
       setTaskList(updatedTaskList);

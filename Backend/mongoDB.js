@@ -100,6 +100,10 @@ const techTaskSchema = new mongoose.Schema({
   });
 
   const otherTaskSchema = new mongoose.Schema({
+    taskId: {
+      type: String,
+      required: true
+    },
     session: {
       type: String,
       required: true
@@ -136,6 +140,10 @@ const techTaskSchema = new mongoose.Schema({
   });
 
   const personalTaskSchema = new mongoose.Schema({
+    taskId: {
+      type: String,
+      required: true
+    },
     taskName: {
       type: String,
       required: true

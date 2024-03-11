@@ -77,6 +77,7 @@ app.post("/signup", async (req, res) => {
 
 app.post("/generalTask", async (req, res) => {
   const {
+    taskId,
     taskName,
     startTime,
     endTime,
@@ -90,6 +91,7 @@ app.post("/generalTask", async (req, res) => {
 
   const newTask = await generalTaskCollection.insertMany([
     {
+      taskId,
       taskName,
       startTime,
       endTime,
@@ -159,6 +161,7 @@ app.get("/getTechTask", async (req, res) => {
 
 app.post("/otherTask", async (req, res) => {
   const {
+    taskId,
     session,
     startTime,
     endTime,
@@ -170,7 +173,7 @@ app.post("/otherTask", async (req, res) => {
   } = req.body;
 
   const newTask = await otherTaskCollection.insertMany([
-    { session, startTime, endTime, startDate, endDate, subject, description,status },
+    { taskId,session, startTime, endTime, startDate, endDate, subject, description,status },
   ]);
 
   try {
@@ -197,11 +200,11 @@ app.get("/getOtherTask", async (req, res) => {
 
 
 app.post("/personalTask", async (req, res) => {
-  const { taskName, startTime, endTime, startDate, endDate, description,status } =
+  const { taskId,taskName, startTime, endTime, startDate, endDate, description,status } =
     req.body;
 
   const newTask = await personalTaskCollection.insertMany([
-    { taskName, startTime, endTime, startDate, endDate, description ,status},
+    { taskId,taskName, startTime, endTime, startDate, endDate, description ,status},
   ]);
 
   try {

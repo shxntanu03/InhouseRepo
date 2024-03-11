@@ -193,6 +193,8 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { Button, Form } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
+
+import { v4 as uuidv4 } from 'uuid'; // Import UUID generator
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -294,7 +296,11 @@ function Home({ updateAllTasks }) {
 
     setTasks((prevTasks) => [...prevTasks, newTask]);
 
+    const generateTaskId = () => {
+      return uuidv4();
+    }
 
+    
 
 
     fetch('http://localhost:8000/generalTask', {
