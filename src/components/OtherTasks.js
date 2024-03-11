@@ -388,7 +388,7 @@ function OtherTasks({ updateAllTasks }) {
         endDate: task.endDate,
         subject: task.subject,
         description: task.description,
-        status: task.status
+        status: "in progress"
       }),
       headers: {
         'Content-Type': 'application/json'

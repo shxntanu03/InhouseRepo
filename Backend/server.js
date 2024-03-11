@@ -126,11 +126,11 @@ app.get("/getGeneralTask", async (req, res) => {
 
 
 app.post("/techTask", async (req, res) => {
-  const { taskName, startTime, endTime, startDate, endDate, description, status} =
+  const { taskName, startTime, endTime, startDate, endDate, description, status,taskId} =
     req.body;
 
   const newTask = await techTaskCollection.insertMany([
-    { taskName, startTime, endTime, startDate, endDate, description,status },
+    { taskName, startTime, endTime, startDate, endDate, description,status,taskId },
   ]);
 
   try {
@@ -142,6 +142,7 @@ app.post("/techTask", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 
 app.get("/getTechTask", async (req, res) => {
   try {
@@ -294,16 +295,16 @@ app.post('/updateTask', async (req, res) => {
     // Update task based on the provided category
     switch (category) {
       case 'techTask':
-        updatedTask = await techTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        updatedTask = await techTaskCollection.updateOne({ taskId: taskId }, { $set: { status: status } });
         break;
       case 'otherTask':
-        updatedTask = await otherTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        updatedTask = await otherTaskCollection.updateOne({ taskId: taskId }, { $set: { status: status } });
         break;
       case 'personalTask':
-        updatedTask = await personalTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        updatedTask = await personalTaskCollection.updateOne({ taskId: taskId }, { $set: { status: status } });
         break;
       case 'generalTask':
-        updatedTask = await generalTaskCollection.updateOne({ _id: taskId }, { $set: { status: status } });
+        updatedTask = await generalTaskCollection.updateOne({ taskId: taskId }, { $set: { status: status } });
         break;
       default:
         return res.status(400).json({ error: 'Invalid task category.' });

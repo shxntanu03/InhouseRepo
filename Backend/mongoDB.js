@@ -62,6 +62,12 @@ const generalTaskSchema = new mongoose.Schema({
 });
 
 const techTaskSchema = new mongoose.Schema({
+
+    taskId: {
+      type: String,
+      required: true
+    },
+
     taskName: {
       type: String,
       required: true
