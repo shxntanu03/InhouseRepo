@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
 const statusEnum = ["completed", "not completed", "in progress"];
 
 const generalTaskSchema = new mongoose.Schema({
+
+  taskId: {
+    type: String,
+    required: true
+  },
   taskName: {
     type: String,
     required: true
