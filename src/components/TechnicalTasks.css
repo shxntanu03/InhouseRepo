@@ -1,13 +1,13 @@
 
 
 .technical-tasks-container {
-    max-width: 700px;
+    max-width: 1000px;
     margin: 20px auto;
     margin-top: 120px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    /* background-color: #fff; */
+   
     background-color: #f8f9fa;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
@@ -15,11 +15,17 @@
       list-style: none;
       padding: 0;
     }
+
+    .select{
+      height: 70px;
+    }
+
+  
   
     .task-list li {
-      margin-bottom: 10px; /* Add margin between list items */
-      border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-      padding: 10px; /* Optional: Add padding for better spacing */
+      margin-bottom: 10px;
+      border: 1px solid #ccc; 
+      padding: 10px; 
     }
   }
   
@@ -52,7 +58,7 @@
   }
   
   .task-list {
-    margin-top: 20px;
+    margin-top: 100px;
   }
   
   .task-list ul {
@@ -68,4 +74,26 @@
     margin-right: 10px;
     cursor: pointer;
   }
+  
+
+  .task-item{
+    margin-top: 30px;
+    border-radius: 25px;
+  }
+  
+  .task-item:hover{
+    /* box-shadow: 10px green; */
+    background-color: rgb(248, 246, 242);
+
+  }
+
+  /* .card {
+    width: 190px;
+    height: 254px;
+    border-radius: 1rem;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  } */
+
   

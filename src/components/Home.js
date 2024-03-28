@@ -187,46 +187,64 @@ function Home({ updateAllTasks }) {
           <h2>Create Task</h2>
           <ToastContainer/>
         </div>
+
+
         <Form.Group controlId="formTaskName">
-          <Form.Label>Task Name:</Form.Label>
-          <Form.Control type="text" name="name" value={taskForm.name} onChange={handleTaskFormChange} isInvalid={!!validationErrors.name} />
+          <Form.Label><strong>Task Name:</strong></Form.Label>
+          <Form.Control className='input-buttons' type="text" name="name" value={taskForm.name} onChange={handleTaskFormChange} isInvalid={!!validationErrors.name} />
           <Form.Control.Feedback type="invalid">{validationErrors.name}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formStartTime">
-          <Form.Label>Start Time:</Form.Label>
+          <Form.Label placeholder='Enter Start Time'><strong>Start Time:</strong></Form.Label>
           <Form.Control type="time" name="startTime" value={taskForm.startTime} onChange={handleTaskFormChange} isInvalid={!!validationErrors.startTime} />
           <Form.Control.Feedback type="invalid">{validationErrors.startTime}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formEndTime">
-          <Form.Label>End Time:</Form.Label>
+          <Form.Label><strong>End Time:</strong></Form.Label>
           <Form.Control type="time" name="endTime" value={taskForm.endTime} onChange={handleTaskFormChange} isInvalid={!!validationErrors.endTime} />
           <Form.Control.Feedback type="invalid">{validationErrors.endTime}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formStartDate">
-          <Form.Label>Date:</Form.Label>
+          <Form.Label><strong>Date</strong></Form.Label>
           <Form.Control type="date" name="startDate" value={taskForm.startDate} onChange={handleTaskFormChange} isInvalid={!!validationErrors.startDate} />
           <Form.Control.Feedback type="invalid">{validationErrors.startDate}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formSubject">
-          <Form.Label>Subject:</Form.Label>
+          <Form.Label placeholder='Enter Subject'><strong>Subject</strong></Form.Label>
           <Form.Control type="text" name="subject" value={taskForm.subject} onChange={handleTaskFormChange} isInvalid={!!validationErrors.subject} />
           <Form.Control.Feedback type="invalid">{validationErrors.subject}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formBatch">
-          <Form.Label>Batch:</Form.Label>
+          <Form.Label><strong>Batch:</strong></Form.Label>
           <Form.Control type="text" name="batch" value={taskForm.batch} onChange={handleTaskFormChange} isInvalid={!!validationErrors.batch} />
           <Form.Control.Feedback type="invalid">{validationErrors.batch}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formClass">
-          <Form.Label>Class:</Form.Label>
+          <Form.Label><strong>Class:</strong></Form.Label>
           <Form.Control type="text" name="class" value={taskForm.class} onChange={handleTaskFormChange} isInvalid={!!validationErrors.class} />
           <Form.Control.Feedback type="invalid">{validationErrors.class}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group controlId="formDescription">
-          <Form.Label>Task Description:</Form.Label>
+          <Form.Label><strong>Description:</strong></Form.Label>
           <Form.Control as="textarea" rows={3} name="description" value={taskForm.description} onChange={handleTaskFormChange} isInvalid={!!validationErrors.description} />
           <Form.Control.Feedback type="invalid">{validationErrors.description}</Form.Control.Feedback>
         </Form.Group>
+
+
         <Button variant="primary" type="button" onClick={handleCreateTask}>
           Create Task ✓
         </Button>

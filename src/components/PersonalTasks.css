@@ -2,13 +2,21 @@
 
 
    .personal-task-container {
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto;
     margin-top: 120px;
     padding: 20px;
     background-color: #f9f9f9; /* Slight grey background */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  input{
+    height:70px;
+  }
+
+  .task-list{
+    margin-top: 100px;
   }
   
   .personal-task-form {
@@ -41,11 +49,12 @@
   }
   
   .task-item {
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     padding: 15px;
     border: 1px solid #ccc;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 25px;
+    margin-top: 30px;
   }
   
   .task-icons span {

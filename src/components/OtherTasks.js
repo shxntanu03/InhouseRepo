@@ -154,16 +154,17 @@ function OtherTasks({ updateAllTasks }) {
 
   return (
     <div className="other-tasks-container">
-      <div className="heading">
+    
         <h2>Create Other Task</h2>
-      </div>
+      
       <form>
         <div className="form-group">
-          <label>Session:</label>
+          <label>Session</label>
           <select
             name="session"
             value={task.session}
             onChange={handleInputChange}
+            className='select'
           >
             <option value="">Select Session</option>
             {sessionOptions.map((option, index) => (
@@ -180,6 +181,7 @@ function OtherTasks({ updateAllTasks }) {
             name="startDate"
             value={task.startDate}
             onChange={handleInputChange}
+            className='select'
           />
         </div>
         <div className="form-group">
@@ -189,6 +191,7 @@ function OtherTasks({ updateAllTasks }) {
             name="endDate"
             value={task.endDate}
             onChange={handleInputChange}
+            className='select'
           />
         </div>
         <div className="form-group">
@@ -198,6 +201,7 @@ function OtherTasks({ updateAllTasks }) {
             name="startTime"
             value={task.startTime}
             onChange={handleInputChange}
+            className='select'
           />
         </div>
         <div className="form-group">
@@ -207,6 +211,7 @@ function OtherTasks({ updateAllTasks }) {
             name="endTime"
             value={task.endTime}
             onChange={handleInputChange}
+            className='select'
           />
         </div>
         <div className="form-group">
@@ -216,6 +221,7 @@ function OtherTasks({ updateAllTasks }) {
             name="subject"
             value={task.subject}
             onChange={handleInputChange}
+            className='select'
           />
         </div>
         <div className="form-group">
@@ -224,6 +230,7 @@ function OtherTasks({ updateAllTasks }) {
             name="description"
             value={task.description}
             onChange={handleInputChange}
+            className='select'
           ></textarea>
         </div>
         <div className="form-group">
@@ -232,11 +239,13 @@ function OtherTasks({ updateAllTasks }) {
           </button>
         </div>
       </form>
+
+      <div/>
       <div className="task-list">
         <h3>Task List</h3>
         <ul>
           {taskList.map((taskItem, index) => (
-            <li key={index}>
+            <li key={index} className='task-item'>
               <div>
                 <strong>Session:</strong> {taskItem.session}
               </div>

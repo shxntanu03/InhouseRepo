@@ -172,6 +172,8 @@ function PersonalTasks({ updateAllTasks }) {
         <div className="form-group">
           <label>Task Name:</label>
           <input
+
+            
             type="text"
             name="taskName"
             value={task.taskName}
@@ -187,7 +189,7 @@ function PersonalTasks({ updateAllTasks }) {
             name="startDate"
             value={task.startDate}
             onChange={handleInputChange}
-            className={errors.startDate ? 'form-control is-invalid' : 'form-control'}
+            className={errors.startDate ? 'form-control is-invalid' : 'form-control' }
           />
           {errors.startDate && <div className="invalid-feedback">{errors.startDate}</div>}
         </div>
@@ -239,6 +241,10 @@ function PersonalTasks({ updateAllTasks }) {
           </button>
         </div>
       </form>
+
+      <div/>
+
+      
       <div className="task-list">
         <h3>Task List</h3>
         {taskList.map((taskItem, index) => (

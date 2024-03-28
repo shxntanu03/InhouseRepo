@@ -208,10 +208,13 @@ function TechnicalTasks({ updateAllTasks }) {
         <Form.Group controlId="formTechnicalTask">
 
           <ToastContainer></ToastContainer>
-          <Form.Label>Technical Task:</Form.Label>
+          <Form.Label>
+
+             <strong>Technical Task</strong>
+            </Form.Label>
 
 
-          <Form.Control as="select" name="technicalTask" value={task.technicalTask} onChange={handleInputChange} isInvalid={!!validationErrors.technicalTask}>
+          <Form.Control className='select'as="select" name="technicalTask" value={task.technicalTask} onChange={handleInputChange} isInvalid={!!validationErrors.technicalTask}>
             <option value="">Select Technical Task</option>
             {technicalTaskOptions.map((option, index) => (
               <option key={index} value={option}>
@@ -225,38 +228,40 @@ function TechnicalTasks({ updateAllTasks }) {
         </Form.Group>
 
         <Form.Group controlId="formStartDate">
-          <Form.Label>Start Date:</Form.Label>
-          <Form.Control type="date" name="startDate" value={task.startDate} onChange={handleInputChange} isInvalid={!!validationErrors.startDate} />
+          <Form.Label><strong>Start Date:</strong></Form.Label>
+          <Form.Control className='select' type="date" name="startDate" value={task.startDate} onChange={handleInputChange} isInvalid={!!validationErrors.startDate} />
           <Form.Control.Feedback type="invalid">{validationErrors.startDate}</Form.Control.Feedback>
         </Form.Group>
 
 
         <Form.Group controlId="formEndDate">
-          <Form.Label>End Date:</Form.Label>
-          <Form.Control type="date" name="endDate" value={task.endDate} onChange={handleInputChange} isInvalid={!!validationErrors.endDate} />
+          <Form.Label><strong>End Date:</strong></Form.Label>
+          <Form.Control className='select' type="date" name="endDate" value={task.endDate} onChange={handleInputChange} isInvalid={!!validationErrors.endDate} />
           <Form.Control.Feedback type="invalid">{validationErrors.endDate}</Form.Control.Feedback>
         </Form.Group>
 
 
         <Form.Group controlId="formStartTime">
-          <Form.Label>Start Time:</Form.Label>
-          <Form.Control type="time" name="startTime" value={task.startTime} onChange={handleInputChange} isInvalid={!!validationErrors.startTime} />
+          <Form.Label><strong>Start Time:</strong></Form.Label>
+          <Form.Control className='select'  type="time" name="startTime" value={task.startTime} onChange={handleInputChange} isInvalid={!!validationErrors.startTime} />
           <Form.Control.Feedback type="invalid">{validationErrors.startTime}</Form.Control.Feedback>
         </Form.Group>
 
 
         <Form.Group controlId="formEndTime">
-          <Form.Label>End Time:</Form.Label>
-          <Form.Control type="time" name="endTime" value={task.endTime} onChange={handleInputChange} isInvalid={!!validationErrors.endTime} />
+          <Form.Label><strong>End Time:</strong></Form.Label>
+          <Form.Control className='select' type="time" name="endTime" value={task.endTime} onChange={handleInputChange} isInvalid={!!validationErrors.endTime} />
           <Form.Control.Feedback type="invalid">{validationErrors.endTime}</Form.Control.Feedback>
         </Form.Group>
 
 
         <Form.Group controlId="formDescription">
-          <Form.Label>Description:</Form.Label>
-          <Form.Control as="textarea" rows={3} name="description" value={task.description} onChange={handleInputChange} isInvalid={!!validationErrors.description} />
+          <Form.Label><strong>Description:</strong></Form.Label>
+          <Form.Control className='select' as="textarea" rows={3} name="description" value={task.description} onChange={handleInputChange} isInvalid={!!validationErrors.description} />
           <Form.Control.Feedback type="invalid">{validationErrors.description}</Form.Control.Feedback>
         </Form.Group>
+        {/* <div/> */}
+        <div/>
 
 
 
@@ -264,13 +269,15 @@ function TechnicalTasks({ updateAllTasks }) {
           Create Task ✓
         </Button>
       </Form>
+      
 
+    
 
-      <div className="task-list">
+    <div className="task-list">
         <h3>Task List</h3>
         <ul>
           {taskList.map((taskItem, index) => (
-            <li key={index}>
+            <li key={index} className='task-item'>
               <div>
                 <strong>Task ID:</strong> {taskItem.taskId}
               </div>
@@ -326,7 +333,13 @@ function TechnicalTasks({ updateAllTasks }) {
             </li>
           ))}
         </ul>
-      </div>
+      
+
+
+
+
+    </div>
+      
     </div>
   );
 }
