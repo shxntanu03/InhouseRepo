@@ -1,12 +1,10 @@
 
-
-
-
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+
+const Navbar = ({ onLogout }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -18,12 +16,20 @@ const Navbar = () => {
   };
 
   return (
+    
     <div className="navbar-container">
       <div className="navbar-header">
+
+     
         <div className="menu-icon" onClick={toggleSidebar}>
           &#9776;
         </div>
         <h1>The Classroom App</h1>
+        <div className="logout-icon-container">
+          <div className="logout-icon" onClick={onLogout}>
+            &#128274;
+          </div>
+        </div>
       </div>
       {isSidebarOpen && (
         <div className="sidebar" onMouseLeave={closeSidebar}>
@@ -71,3 +77,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
