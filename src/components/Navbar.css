@@ -1,67 +1,83 @@
-/* Navbar.css */
 
 
-.navbar-container {
-  position: fixed; /* Fix the navbar to the top */
-  top: 0; /* Ensure it stays at the top of the viewport */
-  width: 100%; /* Make it full-width */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #333;
-  color: white;
-  z-index: 1000; /* Ensure it's above other content */
-}
 
-.navbar-header {
-  display: flex;
-  align-items: center;
-}
 
-.menu-icon {
-  cursor: pointer;
-  font-size: 20px;
-  margin-right: 10px;
-  transition: color 0.3s ease; /* Add transition effect to the color */
-}
-
-.menu-icon:hover {
-  color: #4caf50; /* Change color on hover */
-}
-
-.sidebar {
-  width: 200px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0; /* Change to 0 to make the sidebar visible */
-  background-color: #222;
-  color: white;
-  padding-top: 50px;
-  transition: left 0.3s ease; /* Add transition effect to the left property */
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 15px;
-  transition: background-color 0.3s ease; /* Add transition effect to background-color */
-}
-
-.sidebar li:hover {
-  background-color: #444; /* Change background color on hover */
-}
-
-.sidebar a {
-  text-decoration: none;
-  color: white;
-  transition: color 0.3s ease; /* Add transition effect to color */
-}
-
-.sidebar a:hover {
-  color: #4caf50; /* Change color on hover */
-}
+  .navbar-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    z-index: 1000;
+  }
+  
+  .navbar-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .menu-icon:hover {
+    color: #4caf50;
+  }
+  
+  .logout-icon-container {
+    margin-right: 10px;
+  }
+  
+  .logout-icon {
+    cursor: pointer;
+    font-size: 30px;
+    transition: red 0.3s ease;
+  }
+  
+  .logout-icon:hover {
+    color: #f00;
+  }
+  
+  .sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #222;
+    color: white;
+    padding-top: 50px;
+    transition: left 0.3s ease;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar li:hover {
+    background-color: #444;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    color: #4caf50;
+  }
+  

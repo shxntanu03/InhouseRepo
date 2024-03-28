@@ -1,14 +1,11 @@
-
-
-
-
-// // OtherTasks.js
 // import React, { useState, useEffect } from 'react';
 // import './OtherTasks.css';
+// import { v4 as uuidv4 } from 'uuid'; // Import UUID generator
 
 // function OtherTasks({ updateAllTasks }) {
 //   const [taskList, setTaskList] = useState([]);
 //   const [task, setTask] = useState({
+//     taskId:"",
 //     session: '',
 //     startDate: '',
 //     endDate: '',
@@ -46,11 +43,15 @@
 //     });
 //   };
 
+//   const generateTaskId = () => {
+//     return uuidv4();
+//   }
+
 //   const handleTaskcompleted = () => {
 //     const existingTask = taskList.find(
 //       (t) => t.session === task.session && t.startDate === task.startDate
 //     );
-
+  
 //     if (existingTask) {
 //       const updatedTaskList = taskList.map((t) =>
 //         t === existingTask ? { ...t, status: task.status } : t
@@ -58,22 +59,74 @@
 //       setTaskList(updatedTaskList);
 //       updateAllTasks(updatedTaskList);
 //     } else {
-//       const updatedTaskList = [...taskList, { ...task }];
+//       const taskId = generateTaskId(); // Generate taskId
+//       const updatedTaskList = [...taskList, { ...task, taskId }]; // Use generated taskId
 //       setTaskList(updatedTaskList);
 //       updateAllTasks(updatedTaskList);
+  
+//       fetch("http://localhost:8000/otherTask", {
+//         method: "POST",
+//         body: JSON.stringify({
+//           taskId: taskId, // Use generated taskId
+//           session: task.session,
+//           startTime: task.startTime,
+//           endTime: task.endTime,
+//           startDate: task.startDate,
+//           endDate: task.endDate,
+//           subject: task.subject,
+//           description: task.description,
+//           status: "in progress"
+//         }),
+//         headers: {
+//           'Content-Type': 'application/json'
+//         }
+//       })
+//       .then(response => {
+//         if (!response.ok) {
+//           return response.json().then(data => {
+//             window.alert(data.message);
+//           });
+//         }
+//         window.alert('Task created successfully');
+//       })
+//       .catch(error => {
+//         console.error('Error:', error);
+//       });
+  
+//       setTask({
+//         taskId: taskId, // Use generated taskId
+//         session: '',
+//         startDate: '',
+//         endDate: '',
+//         startTime: '',
+//         endTime: '',
+//         subject: '',
+//         description: '',
+//         status: '', // Clear status after submission
+//       });
 //     }
+//   };
+  
 
-//     fetch("http://localhost:8000/otherTask", {
+//   // const handleStatusChange = (index, newStatus) => {
+//   //   const updatedTaskList = [...taskList];
+//   //   updatedTaskList[index].status = newStatus;
+//   //   setTaskList(updatedTaskList);
+//   //   updateAllTasks(updatedTaskList);
+//   // };
+//   const handleStatusChange = (index, newStatus) => {
+//     const updatedTaskList = [...taskList];
+//     updatedTaskList[index].status = newStatus;
+//     setTaskList(updatedTaskList);
+//     updateAllTasks(updatedTaskList);
+  
+//     // Send POST request to update task status
+//     fetch("http://localhost:8000/updateTask", {
 //       method: "POST",
 //       body: JSON.stringify({
-//         session: task.session,
-//         startTime: task.startTime,
-//         endTime: task.endTime,
-//         startDate: task.startDate,
-//         endDate: task.endDate,
-//         subject: task.subject,
-//         description: task.description,
-//         status: task.status
+//         taskId: updatedTaskList[index].taskId, // Pass taskId of the updated task
+//         status: newStatus, // Pass newStatus to update task status
+//         category: 'otherTask' // Assuming the category is 'techTask'
 //       }),
 //       headers: {
 //         'Content-Type': 'application/json'
@@ -82,32 +135,14 @@
 //     .then(response => {
 //       if (!response.ok) {
 //         return response.json().then(data => {
-//           window.alert(data.message);
+//           console.error(data.error);
 //         });
 //       }
-//       window.alert('Task created successfully');
+//       console.log('Task status updated successfully');
 //     })
 //     .catch(error => {
 //       console.error('Error:', error);
 //     });
-
-//     setTask({
-//       session: '',
-//       startDate: '',
-//       endDate: '',
-//       startTime: '',
-//       endTime: '',
-//       subject: '',
-//       description: '',
-//       status: '',
-//     });
-//   };
-
-//   const handleStatusChange = (index, newStatus) => {
-//     const updatedTaskList = [...taskList];
-//     updatedTaskList[index].status = newStatus;
-//     setTaskList(updatedTaskList);
-//     updateAllTasks(updatedTaskList);
 //   };
 
 //   const handleTaskDelete = (index) => {
@@ -119,16 +154,17 @@
 
 //   return (
 //     <div className="other-tasks-container">
-//       <div className="heading">
+    
 //         <h2>Create Other Task</h2>
-//       </div>
+      
 //       <form>
 //         <div className="form-group">
-//           <label>Session:</label>
+//           <label>Session</label>
 //           <select
 //             name="session"
 //             value={task.session}
 //             onChange={handleInputChange}
+//             className='select'
 //           >
 //             <option value="">Select Session</option>
 //             {sessionOptions.map((option, index) => (
@@ -145,6 +181,7 @@
 //             name="startDate"
 //             value={task.startDate}
 //             onChange={handleInputChange}
+//             className='select'
 //           />
 //         </div>
 //         <div className="form-group">
@@ -154,6 +191,7 @@
 //             name="endDate"
 //             value={task.endDate}
 //             onChange={handleInputChange}
+//             className='select'
 //           />
 //         </div>
 //         <div className="form-group">
@@ -163,6 +201,7 @@
 //             name="startTime"
 //             value={task.startTime}
 //             onChange={handleInputChange}
+//             className='select'
 //           />
 //         </div>
 //         <div className="form-group">
@@ -172,6 +211,7 @@
 //             name="endTime"
 //             value={task.endTime}
 //             onChange={handleInputChange}
+//             className='select'
 //           />
 //         </div>
 //         <div className="form-group">
@@ -181,6 +221,7 @@
 //             name="subject"
 //             value={task.subject}
 //             onChange={handleInputChange}
+//             className='select'
 //           />
 //         </div>
 //         <div className="form-group">
@@ -189,6 +230,7 @@
 //             name="description"
 //             value={task.description}
 //             onChange={handleInputChange}
+//             className='select'
 //           ></textarea>
 //         </div>
 //         <div className="form-group">
@@ -197,11 +239,13 @@
 //           </button>
 //         </div>
 //       </form>
+
+//       <div/>
 //       <div className="task-list">
 //         <h3>Task List</h3>
 //         <ul>
 //           {taskList.map((taskItem, index) => (
-//             <li key={index}>
+//             <li key={index} className='task-item'>
 //               <div>
 //                 <strong>Session:</strong> {taskItem.session}
 //               </div>
@@ -268,14 +312,12 @@
 
 import React, { useState, useEffect } from 'react';
 import './OtherTasks.css';
-import { Button, Form } from 'react-bootstrap';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { v4 as uuidv4 } from 'uuid'; // Import UUID generator
 
 function OtherTasks({ updateAllTasks }) {
   const [taskList, setTaskList] = useState([]);
   const [task, setTask] = useState({
+    taskId: "",
     session: '',
     startDate: '',
     endDate: '',
@@ -284,15 +326,6 @@ function OtherTasks({ updateAllTasks }) {
     subject: '',
     description: '',
     status: 'in progress',
-  });
-  const [validationErrors, setValidationErrors] = useState({
-    session: '',
-    startDate: '',
-    endDate: '',
-    startTime: '',
-    endTime: '',
-    subject: '',
-    description: '',
   });
 
   const sessionOptions = ['Conducted', 'Attended', 'Organised'];
@@ -322,46 +355,11 @@ function OtherTasks({ updateAllTasks }) {
     });
   };
 
-  const validateForm = () => {
-    let isValid = true;
-    const errors = {};
-    if (!task.session) {
-      errors.session = 'Field is required';
-      isValid = false;
-    }
-    if (!task.startDate) {
-      errors.startDate = 'Field is required';
-      isValid = false;
-    }
-    if (!task.endDate) {
-      errors.endDate = 'Field is required';
-      isValid = false;
-    }
-    if (!task.startTime) {
-      errors.startTime = 'Field is required';
-      isValid = false;
-    }
-    if (!task.endTime) {
-      errors.endTime = 'Field is required';
-      isValid = false;
-    }
-    if (!task.subject) {
-      errors.subject = 'Field is required';
-      isValid = false;
-    }
-    if (!task.description) {
-      errors.description = 'Field is required';
-      isValid = false;
-    }
-    setValidationErrors(errors);
-    return isValid;
-  };
+  const generateTaskId = () => {
+    return uuidv4();
+  }
 
-  const handleTaskCompleted = () => {
-    if (!validateForm()) {
-      return;
-    }
-
+  const handleTaskcompleted = () => {
     const existingTask = taskList.find(
       (t) => t.session === task.session && t.startDate === task.startDate
     );
@@ -373,56 +371,83 @@ function OtherTasks({ updateAllTasks }) {
       setTaskList(updatedTaskList);
       updateAllTasks(updatedTaskList);
     } else {
-      const updatedTaskList = [...taskList, { ...task }];
+      const taskId = generateTaskId();
+      const updatedTaskList = [...taskList, { ...task, taskId }];
       setTaskList(updatedTaskList);
       updateAllTasks(updatedTaskList);
-    }
 
-    fetch("http://localhost:8000/otherTask", {
-      method: "POST",
-      body: JSON.stringify({
-        session: task.session,
-        startTime: task.startTime,
-        endTime: task.endTime,
-        startDate: task.startDate,
-        endDate: task.endDate,
-        subject: task.subject,
-        description: task.description,
-        status: "in progress"
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        return response.json().then(data => {
-          toast.error(data.message);
+      fetch("http://localhost:8000/otherTask", {
+        method: "POST",
+        body: JSON.stringify({
+          taskId: taskId,
+          session: task.session,
+          startTime: task.startTime,
+          endTime: task.endTime,
+          startDate: task.startDate,
+          endDate: task.endDate,
+          subject: task.subject,
+          description: task.description,
+          status: "in progress"
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(data => {
+              window.alert(data.message);
+            });
+          }
+          window.alert('Task created successfully');
+        })
+        .catch(error => {
+          console.error('Error:', error);
         });
-      }
-      toast.success('Task created successfully');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
 
-    setTask({
-      session: '',
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-      subject: '',
-      description: '',
-      status: '',
-    });
+      setTask({
+        taskId: taskId,
+        session: '',
+        startDate: '',
+        endDate: '',
+        startTime: '',
+        endTime: '',
+        subject: '',
+        description: '',
+        status: '',
+      });
+    }
   };
+
 
   const handleStatusChange = (index, newStatus) => {
     const updatedTaskList = [...taskList];
     updatedTaskList[index].status = newStatus;
     setTaskList(updatedTaskList);
     updateAllTasks(updatedTaskList);
+
+    fetch("http://localhost:8000/updateTask", {
+      method: "POST",
+      body: JSON.stringify({
+        taskId: updatedTaskList[index].taskId,
+        status: newStatus,
+        category: 'otherTask'
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(data => {
+            console.error(data.error);
+          });
+        }
+        console.log('Task status updated successfully');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   const handleTaskDelete = (index) => {
@@ -432,135 +457,162 @@ function OtherTasks({ updateAllTasks }) {
     updateAllTasks(updatedTaskList);
   };
 
+  const today = new Date().toISOString().split('T')[0]; // Get today's date
+
   return (
     <div className="other-tasks-container">
-      <div className="heading">
-        <h2>Create Other Task</h2>
 
-        <ToastContainer></ToastContainer>
-      </div>
+      <h2>Create Other Task</h2>
 
-      <Form>
-        <Form.Group>
-
-          <Form.Label>Session:</Form.Label>
-          <Form.Control as="select" name="session" value={task.session} onChange={handleInputChange} isInvalid={!!validationErrors.session}>
+      <form>
+        <div className="form-group">
+          <label>Session</label>
+          <select
+            name="session"
+            value={task.session}
+            onChange={handleInputChange}
+            className='select'
+          >
             <option value="">Select Session</option>
             {sessionOptions.map((option, index) => (
               <option key={index} value={option}>
                 {option}
               </option>
             ))}
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">{validationErrors.session}</Form.Control.Feedback>
-        </Form.Group>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Start Date:</label>
+          <input
+            type="date"
+            name="startDate"
+            value={task.startDate}
+            onChange={handleInputChange}
+            className='select'
+          />
+        </div>
+        <div className="form-group">
+          <label>End Date:</label>
+          <input
+            type="date"
+            name="endDate"
+            value={task.endDate}
+            onChange={handleInputChange}
+            className='select'
+          />
+        </div>
+        <div className="form-group">
+          <label>Start Time:</label>
+          <input
+            type="time"
+            name="startTime"
+            value={task.startTime}
+            onChange={handleInputChange}
+            className='select'
+          />
+        </div>
+        <div className="form-group">
+          <label>End Time:</label>
+          <input
+            type="time"
+            name="endTime"
+            value={task.endTime}
+            onChange={handleInputChange}
+            className='select'
+          />
+        </div>
+        <div className="form-group">
+          <label>Subject:</label>
+          <input
+            type="text"
+            name="subject"
+            value={task.subject}
+            onChange={handleInputChange}
+            className='select'
+          />
+        </div>
+        <div className="form-group">
+          <label>Description:</label>
+          <textarea
+            name="description"
+            value={task.description}
+            onChange={handleInputChange}
+            className='select'
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <button type="button" onClick={handleTaskcompleted}>
+            Create Task ✓
+          </button>
+        </div>
+      </form>
 
-
-        <Form.Group>
-          <Form.Label>Start Date:</Form.Label>
-          <Form.Control type="date" name="startDate" value={task.startDate} onChange={handleInputChange} isInvalid={!!validationErrors.startDate} />
-          <Form.Control.Feedback type="invalid">{validationErrors.startDate}</Form.Control.Feedback>
-        </Form.Group>
-
-
-        <Form.Group>
-          <Form.Label>End Date:</Form.Label>
-          <Form.Control type="date" name="endDate" value={task.endDate} onChange={handleInputChange} isInvalid={!!validationErrors.endDate} />
-          <Form.Control.Feedback type="invalid">{validationErrors.endDate}</Form.Control.Feedback>
-        </Form.Group>
-
-
-        <Form.Group>
-          <Form.Label>Start Time:</Form.Label>
-          <Form.Control type="time" name="startTime" value={task.startTime} onChange={handleInputChange} isInvalid={!!validationErrors.startTime} />
-          <Form.Control.Feedback type="invalid">{validationErrors.startTime}</Form.Control.Feedback>
-        </Form.Group>
-
-
-        <Form.Group>
-          <Form.Label>End Time:</Form.Label>
-          <Form.Control type="time" name="endTime" value={task.endTime} onChange={handleInputChange} isInvalid={!!validationErrors.endTime} />
-          <Form.Control.Feedback type="invalid">{validationErrors.endTime}</Form.Control.Feedback>
-        </Form.Group>
-
-
-        <Form.Group>
-          <Form.Label>Subject:</Form.Label>
-          <Form.Control type="text" name="subject" value={task.subject} onChange={handleInputChange} isInvalid={!!validationErrors.subject} />
-          <Form.Control.Feedback type="invalid">{validationErrors.subject}</Form.Control.Feedback>
-        </Form.Group>
-
-
-        <Form.Group>
-          <Form.Label>Description:</Form.Label>
-          <Form.Control as="textarea" name="description" value={task.description} onChange={handleInputChange} isInvalid={!!validationErrors.description} />
-          <Form.Control.Feedback type="invalid">{validationErrors.description}</Form.Control.Feedback>
-        </Form.Group>
-
-
-        <Button variant="primary" type="button" onClick={handleTaskCompleted}>
-          Create Task ✓
-        </Button>
-      </Form>
+      <div />
       <div className="task-list">
         <h3>Task List</h3>
         <ul>
-          {taskList.map((taskItem, index) => (
-            <li key={index}>
-              <div>
-                <strong>Session:</strong> {taskItem.session}
-              </div>
-              <div>
-                <strong>Start Date:</strong> {taskItem.startDate}
-              </div>
-              <div>
-                <strong>End Date:</strong> {taskItem.endDate}
-              </div>
-              <div>
-                <strong>Start Time:</strong> {taskItem.startTime}
-              </div>
-              <div>
-                <strong>End Time:</strong> {taskItem.endTime}
-              </div>
-              <div>
-                <strong>Subject:</strong> {taskItem.subject}
-              </div>
-              <div>
-                <strong>Description:</strong> {taskItem.description}
-              </div>
-              <div>
-                <strong>Status:</strong> {taskItem.status}
-              </div>
-              <span
-                role="img"
-                aria-label="completed"
-                onClick={() => handleStatusChange(index, 'completed')}
-              >
-                ✅
-              </span>
-              <span
-                role="img"
-                aria-label="not completed"
-                onClick={() => handleStatusChange(index, 'not completed')}
-              >
-                ❌
-              </span>
-              <span
-                role="img"
-                aria-label="in progress"
-                onClick={() => handleStatusChange(index, 'in progress')}
-              >
-                🔄
-              </span>
-              <span
-                role="img"
-                aria-label="Delete"
-                onClick={() => handleTaskDelete(index)}
-              >
-                🗑️
-              </span>
-            </li>
-          ))}
+          {taskList.map((taskItem, index) => {
+            if (taskItem.startDate === today) {
+              return (
+                <li key={index} className='task-item'>
+                  <div>
+                    <strong>Session:</strong> {taskItem.session}
+                  </div>
+                  <div>
+                    <strong>Start Date:</strong> {taskItem.startDate}
+                  </div>
+                  <div>
+                    <strong>End Date:</strong> {taskItem.endDate}
+                  </div>
+                  <div>
+                    <strong>Start Time:</strong> {taskItem.startTime}
+                  </div>
+                  <div>
+                    <strong>End Time:</strong> {taskItem.endTime}
+                  </div>
+                  <div>
+                    <strong>Subject:</strong> {taskItem.subject}
+                  </div>
+                  <div>
+                    <strong>Description:</strong> {taskItem.description}
+                  </div>
+                  <div>
+                    <strong>Status:</strong> {taskItem.status}
+                  </div>
+                  <span
+                    role="img"
+                    aria-label="completed"
+                    onClick={() => handleStatusChange(index, 'completed')}
+                  >
+                    ✅
+                  </span>
+                  <span
+                    role="img"
+                    aria-label="not completed"
+                    onClick={() => handleStatusChange(index, 'not completed')}
+                  >
+                    ❌
+                  </span>
+                  <span
+                    role="img"
+                    aria-label="in progress"
+                    onClick={() => handleStatusChange(index, 'in progress')}
+                  >
+                    🔄
+                  </span>
+                  <span
+                    role="img"
+                    aria-label="Delete"
+                    onClick={() => handleTaskDelete(index)}
+                  >
+                    🗑️
+                  </span>
+                </li>
+              );
+            } else {
+              return null;
+            }
+          })}
         </ul>
       </div>
     </div>
@@ -568,3 +620,7 @@ function OtherTasks({ updateAllTasks }) {
 }
 
 export default OtherTasks;
+
+
+
+

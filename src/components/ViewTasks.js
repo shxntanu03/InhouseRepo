@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ViewTasks.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 async function fetchTask(startDate, status) {
@@ -28,7 +28,7 @@ async function fetchTask(startDate, status) {
     return responseData.tasks;
   } catch (error) {
     console.error('Error:', error.message);
-    toast.error('An error occurred while displaying the task.');
+    // toast.error('An error occurred while displaying the task.');
     return [];
   }
 }
